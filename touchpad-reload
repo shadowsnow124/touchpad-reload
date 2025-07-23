@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# This script reloads the i2c_hid_acpi touchpad module after suspend/resume
+
+case "$1" in
+  post)
+    sudo rmmod i2c_hid_acpi
+    sudo modprobe i2c_hid_acpi
+    ;;
+esac
+
+exit 0
