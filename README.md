@@ -1,19 +1,21 @@
-# HP Zorin OS Touchpad Reload Script (Post-Suspend Fix)
+# Touchpad Reload Script (Post-Suspend Fix)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 💡 Problem
 
-laptop users face an issue where their touchpad stops responding after the laptop wakes up from sleep (suspension). This script provides an automated solution.
+Laptop users often face an issue where their touchpad stops responding after the laptop wakes up from sleep (suspension). This script provides an automated solution to re-enable it.
 
 ## ✅ Tested Environment
 
 * **Laptop Model:** HP ENVY X360
 * **Operating System:** Zorin OS 17.3 Core
 
-While tested on this specific setup, this solution might work for other Laptop or Linux distributions experiencing similar touchpad issues after suspend.
+While tested on this specific setup, this solution might work for other laptops or Linux distributions experiencing similar touchpad issues after suspend, particularly those using the `i2c_hid_acpi` driver.
 
 ## ⚙️ How It Works
 
-The core problem is that the touchpad's driver (specifically `i2c_hid_acpi` for many laptops) sometimes fails to re-initialize properly after the system resumes from a low-power state.
+The core problem is that the touchpad's driver (specifically `i2c_hid_acpi` for many modern laptops) sometimes fails to re-initialize properly after the system resumes from a low-power state.
 
 The `touchpad-reload` script fixes this by:
 
@@ -27,7 +29,7 @@ The script is placed in a special directory (`/lib/systemd/system-sleep/`) where
 Follow these simple steps to install the touchpad fix:
 
 1.  **Download the Script:**
-    Download the `touchpad-reload` file directly from this repository to your laptop.
+    Download the `touchpad-reload` file directly from this repository to your laptop (e.g., into your `Downloads` folder).
 
 2.  **Open a Terminal:**
     Press `Ctrl + Alt + T` on your keyboard.
@@ -39,35 +41,24 @@ Follow these simple steps to install the touchpad fix:
     ```bash
     sudo mv ~/Downloads/touchpad-reload /lib/systemd/system-sleep/
     ```
+    You will be asked for your root password.
 
-    You will be ask for your root password.
-    
-    or just
-
-    ```
-    xdg-open /lib/systemd/system-sleep
-    ```
-    and drop a file into it
-    
-
-5.  **Make the Script Executable:**
+4.  **Make the Script Executable:**
     For the system to run the script, it must have executable permissions. In the terminal, run:
 
     ```bash
     sudo chmod +x /lib/systemd/system-sleep/touchpad-reload
     ```
 
-
-6.  **Reboot Your System:**
-    It's recommended to reboot your laptop to ensure it working properly simply type on termial
+5.  **Reboot Your System:**
+    It's recommended to reboot your laptop to ensure the script works properly. Simply type in the terminal:
 
     ```bash
     sudo reboot
     ```
+    After rebooting, you're good to go!
 
-    than you good to go
-    
-7.  **Test the Fix:** (optinal)
+6.  **Test the Fix (Optional):**
     After rebooting and logging in, put your laptop to sleep (e.g., close the lid or select "Suspend"). Then, wake it up. Your touchpad should now work as normal.
 
 ## 🗑️ Uninstallation
@@ -79,15 +70,8 @@ To remove the fix, simply delete the script file:
     ```bash
     sudo rm /lib/systemd/system-sleep/touchpad-reload
     ```
-    Enter your password when prompted.
+    Enter your password and it gone!
 
-    or
-
-    ```
-    xdg-open /lib/systemd/system-sleep/
-    ```
-
-    and delete a `tourchpad-reload` file and that it 
 ## ⚠️ Disclaimer
 
 This script involves modifying system files. While designed to be safe and effective, use it at your own risk. Always ensure you have backups of important data.
