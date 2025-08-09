@@ -1,19 +1,17 @@
 # Touchpad Reload Script (Post-Suspend Fix)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-## 💡 Problem
+## Problem
 
 Laptop often have an issue where their touchpad stops responding after the laptop wakes up from sleep (or suspension). This script provides an automated solution to re-enable it.
 
-## ✅ Tested Environment
+## Tested Environment
 
 * **Laptop Model:** HP ENVY X360
 * **Operating System:** Zorin OS 17.3 Core
 
 While tested on this specific setup, this solution might work for other laptops or Linux distributions experiencing similar touchpad issues after suspend, particularly those using the `i2c_hid_acpi` driver.
 
-## ⚙️ How It Works
+## How It Works
 
 The problem is that the touchpad's driver (specifically `i2c_hid_acpi` ) sometimes fails to load properly after the system resumes from a low-power state.
 
@@ -24,7 +22,7 @@ The `touchpad-reload` script fixes this by:
 
 The script is placed in a special directory (`/lib/systemd/system-sleep/`) where `systemd` (system service manager) automatically runs scripts after a suspend/resume event. Making the script executable (`sudo chmod +x`) allows the system to run it as a program.
 
-## 🚀 Installation
+## Installation
 
 Follow these simple steps to install the touchpad fix:
 
@@ -61,7 +59,7 @@ Follow these simple steps to install the touchpad fix:
 6.  **Test the Fix (Optional):**
     After rebooting and logging in, put your laptop to sleep. Then, wake it up. Your touchpad should now work as normal.
 
-## 🗑️ Uninstallation
+## Uninstall
 
 To remove the fix, simply delete the script file:
 
@@ -72,15 +70,15 @@ To remove the fix, simply delete the script file:
     ```
     Enter your password and it gone!
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This script involves modifying system files. While designed to be safe and effective, use it at your own risk. Always ensure you have backups of important data.
 
-## 🤝 Contribution & Feedback
+## Contribution & Feedback
 
 If this script helped you, please consider starring this repository!
 If you have any feedback, questions, or discover that this solution works on other laptop models or distributions, feel free to open an issue or reach out.
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
