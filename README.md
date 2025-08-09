@@ -1,4 +1,4 @@
-# Touchpad Reload Script (Post-Suspend Fix)
+# Touchpad Reload
 
 ## Problem
 
