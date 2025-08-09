@@ -4,7 +4,7 @@
 
 ## 💡 Problem
 
-Laptop users often face an issue where their touchpad stops responding after the laptop wakes up from sleep (suspension). This script provides an automated solution to re-enable it.
+Laptop often have an issue where their touchpad stops responding after the laptop wakes up from sleep (or suspension). This script provides an automated solution to re-enable it.
 
 ## ✅ Tested Environment
 
@@ -15,14 +15,14 @@ While tested on this specific setup, this solution might work for other laptops 
 
 ## ⚙️ How It Works
 
-The core problem is that the touchpad's driver (specifically `i2c_hid_acpi` for many modern laptops) sometimes fails to re-initialize properly after the system resumes from a low-power state.
+The problem is that the touchpad's driver (specifically `i2c_hid_acpi` ) sometimes fails to load properly after the system resumes from a low-power state.
 
 The `touchpad-reload` script fixes this by:
 
-1.  **`sudo rmmod i2c_hid_acpi`**: This command **removes** (unloads) the `i2c_hid_acpi` kernel module (your touchpad's driver) from the system's memory.
-2.  **`sudo modprobe i2c_hid_acpi`**: This command then **loads** the `i2c_hid_acpi` module back into memory, forcing it to re-initialize and properly detect your touchpad.
+1.  **`sudo rmmod i2c_hid_acpi`**: This command **removes** (unloads) the `i2c_hid_acpi` kernel module (touchpad's driver) from the system memory.
+2.  **`sudo modprobe i2c_hid_acpi`**: This command then **loads** the `i2c_hid_acpi` module back into memory, forcing it to re-load and properly detect your touchpad.
 
-The script is placed in a special directory (`/lib/systemd/system-sleep/`) where `systemd` (your system's service manager) automatically runs scripts after a suspend/resume event. Making the script executable (`sudo chmod +x`) allows the system to run it as a program.
+The script is placed in a special directory (`/lib/systemd/system-sleep/`) where `systemd` (system service manager) automatically runs scripts after a suspend/resume event. Making the script executable (`sudo chmod +x`) allows the system to run it as a program.
 
 ## 🚀 Installation (Drop-In Method)
 
@@ -32,7 +32,7 @@ Follow these simple steps to install the touchpad fix:
     Download the `touchpad-reload` file directly from this repository to your laptop (e.g., into your `Downloads` folder).
 
 2.  **Open a Terminal:**
-    Press `Ctrl + Alt + T` on your keyboard.
+    Press `Ctrl + Alt + T` or oopen your terminal.
 
 3.  **Move the Script to the System Directory:**
     Place the downloaded `touchpad-reload` file into the correct system directory (`/lib/systemd/system-sleep/`).
@@ -41,7 +41,7 @@ Follow these simple steps to install the touchpad fix:
     ```bash
     sudo mv ~/Downloads/touchpad-reload /lib/systemd/system-sleep/
     ```
-    You will be asked for your root password.
+    You will be asked for root password.
 
 4.  **Make the Script Executable:**
     For the system to run the script, it must have executable permissions. In the terminal, run:
@@ -59,7 +59,7 @@ Follow these simple steps to install the touchpad fix:
     After rebooting, you're good to go!
 
 6.  **Test the Fix (Optional):**
-    After rebooting and logging in, put your laptop to sleep (e.g., close the lid or select "Suspend"). Then, wake it up. Your touchpad should now work as normal.
+    After rebooting and logging in, put your laptop to sleep. Then, wake it up. Your touchpad should now work as normal.
 
 ## 🗑️ Uninstallation
 
