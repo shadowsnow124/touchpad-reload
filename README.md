@@ -24,7 +24,7 @@ The `touchpad-reload` script fixes this by:
 
 The script is placed in a special directory (`/lib/systemd/system-sleep/`) where `systemd` (system service manager) automatically runs scripts after a suspend/resume event. Making the script executable (`sudo chmod +x`) allows the system to run it as a program.
 
-## 🚀 Installation (Drop-In Method)
+## 🚀 Installation
 
 Follow these simple steps to install the touchpad fix:
 
